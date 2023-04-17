@@ -19,7 +19,7 @@ class ClassView(APIView):
 		if id is not None:
 			c = Class.objects.get(id=id)
 			serializer= ClassSerializer(c)
-			return Response({"classes":serializer.data},template_name = "main/detail.html")
+			return Response({"data":serializer.data},template_name = "main/detail.html")
 		data = Class.objects.all()
 		serializer = ClassSerializer(data,many=True)
 		return Response({"data":serializer.data},template_name = "main/home.html")

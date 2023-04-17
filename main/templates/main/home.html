@@ -15,35 +15,35 @@
 			<p>{{d.description}}</p>
 
 		  	{%for lesson in d.lessons%}
-
 			      <p>title - {{lesson.title}} : {{lesson.resources_count}} resources</p>
 			      <p>description - <br> {{lesson.description}}</p>
 
 				<table class="table">
-					<h5>Resources:</h5>
-				  <thead>
-				    <tr>
-				      <th scope="col">#</th>
-				      <th scope="col">title</th>
-				      <th scope="col">description</th>
-				      <th scope="col">Format</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  	{%for resource in lesson.resources%}
+					  <h5>Resources:</h5>
+					  <thead>
 					    <tr>
-					      <th scope="row">{{forloop.counter}}</th>
-					      <td>{{resource.title}}</td>
-					      <td>{{resource.description}}</td>
-					      <td>{%if resource.resource_type == "V"%}VIDEO{%else%}PDF{%endif%}</td>
+					      <th scope="col">#</th>
+					      <th scope="col">title</th>
+					      <th scope="col">description</th>
+					      <th scope="col">Format</th>
 					    </tr>
-				    {%endfor%}
-				  </tbody>
+					  </thead>
+
+					  <tbody>
+					  	{%for resource in lesson.resources%}
+						    <tr>
+						      <th scope="row">{{forloop.counter}}</th>
+						      <td>{{resource.title}}</td>
+						      <td>{{resource.description}}</td>
+						      <td>{%if resource.resource_type == "V"%}VIDEO{%else%}PDF{%endif%}</td>
+						    </tr>
+					    {%endfor%}
+					  </tbody>
 				</table>
 
 		    {%endfor%}
-		  </tbody>
-		</table>
+		    <a href="{%url 'class_detail' d.id%}">Detail</a>
+
 	{%endfor%}
 </div>
 

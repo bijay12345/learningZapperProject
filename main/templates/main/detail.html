@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<h1>{{data.title}}</h1>
+	<p>{{data.description}}</p>
+
+  	{%for lesson in data.lessons%}
+        <p>title - {{lesson.title}} : {{lesson.resources_count}} resources</p>
+        <p>description - <br> {{lesson.description}}</p>
+		<table class="table">
+		  <h5>Resources:</h5>
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">title</th>
+		      <th scope="col">description</th>
+		      <th scope="col">Format</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{%for resource in lesson.resources%}
+			    <tr>
+			      <th scope="row">{{forloop.counter}}</th>
+			      <td>{{resource.title}}</td>
+			      <td>{{resource.description}}</td>
+			      <td>{%if resource.resource_type == "V"%}VIDEO{%else%}PDF{%endif%}</td>
+			    </tr>
+		    {%endfor%}
+		  </tbody>
+		</table>
+    {%endfor%}
+
+</body>
+</html>
