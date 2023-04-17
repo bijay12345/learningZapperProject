@@ -1,13 +1,15 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Class,Lesson,Resources
-from rest_framework import filters
 
 class ResourceSerializer(ModelSerializer):
 	class Meta:
 		model = Resources 
-		fields = ["title","description","resource_type"]
-		filter_backends = [filters.OrderingFilter]
-		ordering_fields = 'resource_type'
+		fields = ["id","title","description","resource_type"]
+
+	def get_queryset(self):
+		qs=super().get_queryset()
+		result=qs.values("resource_type")
+		return result
 
 
 class LessonSerializer(ModelSerializer):

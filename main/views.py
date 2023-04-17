@@ -7,6 +7,12 @@ from rest_framework.response import Response
 from .serializers import ClassSerializer,ResourceSerializer,LessonSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
 
+class ClassAPi(APIView):
+	def get(self,request,format=None):
+		data = Class.objects.all()
+		serializer = ClassSerializer(data,many=True)
+		return Response({"data":serializer.data})
+
 class ClassView(APIView):
 	renderer_classes = [TemplateHTMLRenderer]
 	def get(self,request,id=None,format=None):
