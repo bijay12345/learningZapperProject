@@ -20,6 +20,9 @@ class ClassView(APIView):
 			serializer= ClassSerializer(c)
 			return Response({"data":serializer.data},template_name = "main/detail.html")
 		
-		data = Class.objects.all().prefetch_related("lessons","lessons__resources")
+		data = Class.objects.all().prefetch_related("lessons","lessons__resources")	
+
+		# grouped_data = Class.objects.prefetch_related("lessons","lessons__resources").values("lessons__resources__resource_type","lessons","title")
+		# print(grouped_data)
 		serializer = ClassSerializer(data,many=True)
 		return Response({"data":serializer.data},template_name = "main/home.html")
